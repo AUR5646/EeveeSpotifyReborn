@@ -43,15 +43,6 @@ jobs:
        tar -xvf data.tar.lzma
        cp -r var/jb/Library/Frameworks/SwiftProtobuf.framework $THEOS/lib/iphone/rootless
 
-   - name: Build EeveeSpotify (rootful)
-     run: |
-       make package FINALPACKAGE=1
-       echo "filename=$(find . -not -name '*debug*' -path './packages/*' | cut -d/ -f3)" >> $GITHUB_ENV
-   - uses: actions/upload-artifact@v4
-     with:
-       name: ${{env.filename}}
-       path: packages/${{env.filename}}
-       if-no-files-found: error
 
    - name: Build EeveeSpotify (rootless)
      run: |
